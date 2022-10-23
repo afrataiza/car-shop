@@ -11,12 +11,8 @@ class CarController {
     req: Request,
     res: Response,
   ) {
-    try {
-      const car = await this._service.create(req.body);
-      return res.status(201).json(car);
-    } catch (error) {
-      return res.status(400).json(error);
-    }
+    const car = await this._service.create(req.body);
+    return res.status(201).json(car);
   }
 
   public async readOne(

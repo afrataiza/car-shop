@@ -12,9 +12,7 @@ class CarService implements IService<ICar> {
 
   public async create(obj:ICar): Promise<ICar> {
     const parsed = carSchema.safeParse(obj);
-    if (!parsed.success) {
-      throw parsed.error;
-    }
+    if (!parsed.success) throw new Error(ErrorTypes.FildsMustRequired);
     return this._car.create(parsed.data);
   }
 
