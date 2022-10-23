@@ -27,15 +27,13 @@ class CarController {
     return res.status(200).json(result);
   }
 
-  //   public async update(
-  //     req: Request,
-  //     res: Response<ICar>,
-  //   ) {
-  //     const { material, color } = req.body;
-  //     const frame = { material, color };
-  //     const result = await this._service.update(req.params.id, frame);
-  //     return res.status(200).json(result);
-  //   }
+  public async update(
+    req: Request,
+    res: Response,
+  ) {
+    const result = await this._service.update(req.params.id, req.body);
+    return res.status(200).json(result);
+  }
 
   public async read(
     req: Request,

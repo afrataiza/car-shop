@@ -24,15 +24,14 @@ class CarService implements IService<ICar> {
     return car;
   }
 
-  //   public async update(_id: string, obj: unknown): Promise<ICar> {
-  //     const parsed = carSchema.safeParse(obj);
-  //     if (!parsed.success) {
-  //       throw parsed.error;
-  //     }
-  //     const frame = await this._car.update(_id, parsed.data);
-  //     if (!frame) throw new Error(ErrorTypes.EntityNotFound);
-  //     return frame;
-  //   }
+  public async update(_id: string, obj: unknown): Promise<ICar> {
+    const parsed = carSchema.safeParse(obj);
+    if (!parsed.success) throw new Error(ErrorTypes.FildsMustRequired);
+    
+    const car = await this._car.update(_id, parsed.data);
+    if (!car) throw new Error(ErrorTypes.ObjectNotFound);
+    return car;
+  }
 
   public async read(): Promise<ICar[]> {
     return this._car.read();

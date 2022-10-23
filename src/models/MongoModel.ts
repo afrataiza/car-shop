@@ -26,6 +26,7 @@ abstract class MongoModel<T> implements IModel<T> {
     return this._model.findByIdAndUpdate(
       { _id },
       { ...obj } as UpdateQuery<T>,
+      { new: true },
     );
   }
 
