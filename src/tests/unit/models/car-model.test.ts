@@ -4,7 +4,7 @@ const { expect } = chai;
 import { Model } from 'mongoose';
 import * as carMock from '../../mocks/CarsMock';
 import CarModel from '../../../models/CarModel';
-import { create } from 'domain';
+import { ICar } from '../../../interfaces/ICar';
 
 describe('Testa a camada model da rota /cars', () => {
   const carModel = new CarModel();
@@ -30,7 +30,7 @@ describe('Testa a camada model da rota /cars', () => {
 
     it('dispara status 400, quando tenta criar um carro com body vazio', async () => {
       try {
-				await carModel.create(null);
+				await carModel.create({} as ICar);
 			} catch (error: any) {
 				expect(error.message).to.be.eq('FildsMustRequired');
 			}
